@@ -37,14 +37,14 @@ def __main__():
     DNSServer = DNS_Server()
     with open(filename, "r") as handle:
         # Get first line
-        line = handle.readline()
+        line = handle.readline().strip()
 
         # Iterate while line is not None
         while line is not None:
             print(f"Digging line: {line}")
             subprocess.run(["dig", line, f"@{DNSServer.next()}"])
             # Get next line
-            line = handle.readline()
+            line = handle.readline().strip()
             if attempts % DNSServer.count:
                 time.sleep(1)
 
